@@ -1,0 +1,32 @@
+
+arr = input()
+
+length    = divmod(len(arr),8)[0]
+remainder = divmod(len(arr),8)[1]
+
+for i in range(length):
+
+    start = 8*i
+
+    print(arr[start:start+8])
+
+
+#len(remainder)
+#end = [0]*(8-remainder)
+#print(end)
+
+#print(length)
+#print(remainder)
+
+last = arr[-remainder:]
+
+if remainder != 0:
+    for i in range(8-remainder):
+        last = last + "0"
+        #last.join('0')
+        #print(last)
+        #last.append('0')
+    print(last)
+
+#print(arr[-remainder:])
+#print(arr[-remainder:].join(0))

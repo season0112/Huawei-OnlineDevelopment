@@ -1,0 +1,7 @@
+number = float(input())
+
+
+if number-int(number) == 0.5:
+    print(int(number)+1)
+else:
+    print(round(number))

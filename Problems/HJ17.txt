@@ -1,0 +1,68 @@
+
+def deleteNonsense(movement_all):
+
+    # check empty
+    while (movement_all.count("")):
+        movement_all.remove("")
+
+    # check initial character
+    deletelist = []
+    for i in range(len(movement_all)):
+        if str(movement_all[i])[0] != "A" and str(movement_all[i])[0] != "S" and str(movement_all[i])[0] != "D" and str(movement_all[i])[0] != "W":
+            deletelist.append(i)
+        elif len(str(movement_all[i])) > 3:
+            deletelist.append(i)
+        elif len(str(movement_all[i])) == 2:
+            if str(movement_all[i])[1] > str(9) or str(movement_all[i])[1] < str(0):
+                deletelist.append(i)
+        elif len(str(movement_all[i])) == 3:
+            if str(movement_all[i])[1] > str(9) or str(movement_all[i])[1] < str(0) or str(movement_all[i])[2] > str(9) or str(movement_all[i])[2] < str(0):
+                #print(str(movement_all[i]))
+                #print(str(movement_all[i])[1])
+                #print(str(movement_all[i])[2])
+                deletelist.append(i)
+
+
+    deletelist.reverse()
+    #print("deletelist:" + str(deletelist))
+    for i in range(len(deletelist)):
+        del movement_all[deletelist[i]]
+
+    # check 
+
+
+    return movement_all
+
+
+
+location = [0, 0]
+movement_all = str(input()).split(";")
+deleteNonsense(movement_all)
+
+#print(movement_all)
+
+
+for i in range(len(movement_all)):
+    if str(movement_all[i])[0] == "A":
+        location[0] = location[0] - int(str(movement_all[i])[1:])
+    elif str(movement_all[i])[0] == "D":
+        location[0] = location[0] + int(str(movement_all[i])[1:])
+    elif str(movement_all[i])[0] == "W":
+        location[1] = location[1] + int(str(movement_all[i])[1:])
+    elif str(movement_all[i])[0] == "S":
+        location[1] = location[1] - int(str(movement_all[i])[1:])
+
+#print(location)
+#print("".join(location))
+print( str(location[0]) + str(",") + str(location[1]))
+
+
+
+
+
+
+
+
+
+
+

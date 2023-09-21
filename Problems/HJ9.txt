@@ -1,0 +1,28 @@
+1.自己的：
+/*
+错在了w2 reverse之后，又按照w1的正向顺序作为原顺序排列了。
+参考答案中一开始就纠正了顺序： 【：：-1】
+*/
+
+number = input()
+
+w1 = list(number)
+#print(w1)
+
+w2 = list(set(number))
+#print(w2)
+
+w2.sort(key = w1.index) 
+w2.reverse()
+#print(w2)
+
+print( "".join(w2) )
+
+#print(list(map(int, w2)))
+
+
+2. 参考答案
+list1 = list(input()[::-1])
+list2 = list(set(list1))
+list2.sort(key = list1.index)
+print(''.join(list2))

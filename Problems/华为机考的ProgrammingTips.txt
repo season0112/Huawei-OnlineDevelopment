@@ -1,0 +1,183 @@
+首先说下机考内容和形式，机考一共600分3道题分别为100、200、300分，主要考察范围是字符串、数组、哈希表、递归、栈、深度搜索、广度搜索、动态规划、回溯。
+
+
+
+1.输入：arr = input() 返回为 string 类型
+
+2.去除重复字母:set(string)，但是返回的是"set"对象，需要list()转换
+{}除了字典dic以外，也可以是集合set.
+注意这里set函数会把顺序打乱。
+
+3.字母排序：sort（）或者sorted（）
+list.sort()操作原list,sorted(list)返回新list2
+sorted（这也可以是dic）
+按照某list_old的index排序，则sorted(list_new, key=list_old.index)，则两个的元素顺序相同。
+
+4.将”tuple”或“list”拼接为一个总的string：join()函数: str.join(str2)
+a=['a', 'b', 'c']
+"".join(a)
+
+5.拆分string函数：split()
+str.split(str="", num=string.count(str)). 第一个为分隔符， 第二个为分割次数,默认为-1即分割所有
+
+6.去除头尾指定的字符：strip()
+
+7.一个字符串变分别的单个字符串：list(string)
+
+8.除法：divmod（） 例如：divmod(7,2)为（3,1）
+
+9.字母移位：
+ord() 和 chr() 内置函数，
+ord() 是将单个字符转 Unicode 码点; chr() 将 Unicode 码点转为字符， 它们两个互为逆函数，Unicode 码点对于英文字母是顺序的，
+chr(ord("a")+1)为"b"
+
+10.两个list求交集：”&“操作符
+”&“只能用于两个集合(set)之间，所以若为求两个list,先转为set.
+
+11.计算元素出现次数
+list.count("XX")
+
+12.判断数字字母大小写
+str.isdigit()
+str.isalpha()
+str.islower()
+str.isupper()
+
+13.list删除元素
+del list[索引]
+list.remove(元素) 若有重复的，一次只删除第一个 
+
+14.list中按照大小顺序插入元素：import bisect
+bisect. bisect(list, X)
+
+15.保留小数位数
+用：print('%.2' %(3/2)),  不要用round，会有问题。
+或者用：int((1.23456*100)/100) 为保留三位小数
+
+16.寻找list中某元素的index: list.index(X)
+但是这个只返回第一个元素，想返回所有的index:用enumerate()
+enumerate(a)返回的是一个tuple,要先转为list.
+最后[x for x,y in list(enumerate(a)) if y == 某元素 ]
+又或者：
+np.where(numpy.array(a)=='X')
+
+判断list中是否有某元素：
+list.count('XXX') == 0
+
+17.
+map(function, iterable, ...)
+
+18. 最长递增子序列问题（LIS：Longest Increasing Subsequence）：
+1.动态规划:网上很多
+2.贪心算法：贪心算法有一个思路，就是最长上升子序列一定是上升最慢的方向。准备一个数组d用于存储上升子序列，每当获取一个元素，我们判断一下这个元素和d中最后一个元素谁更大，如果该元素更大，则添加到d数组中，否则，找到数组d中该元素的位置并插入，数组d始终是有序的，所以可以使用二分查找。
+from bisect import bisect_left
+class Solution:
+    def lengthOfLIS(self, nums):
+        d = []
+        for n in nums:
+            if not d or n > d[-1]:
+                d.append(n)
+            else:
+                d[bisect_left(d, n)] = n
+        return len(d)
+
+19.最长公共子序列（LCS:Longest Common Sequence）
+
+def longestCommonSubsequence(text1, text2):
+
+    # calculate the size of the first and second string
+    sz1, sz2 = len(text1), len(text2)
+
+    # since to calculate dp(i,j) we only need dp(i-1,j-1), dp(i-1,j), dp(i,j-1)
+    # we don't have to save data before i-1
+    # we use dp to save dp(i-1, 0), dp(i-1, 1)....dp(i-1, sz2)
+    # we use tmp to save dp(i, 0), dp(i,1)....(dpi-1, sz2)
+
+    tmp, dp = [0]*(sz2+1), [0]*(sz2+1)
+    for i in range(0, sz1):
+        for j in range(0,  sz2):
+            tmp[j+1] = dp[j] + \
+            1 if text1[i] == text2[j] else max(tmp[j], dp[j+1])
+
+    # In the next iteration, we will calculate dp(i+1,0),dp(i+1, 1)....dp(i+1,sz2)
+    # So we exchange dp and tmp
+        tmp, dp = dp, tmp
+    return dp[-1]
+
+
+20. 初始化二维数组
+dp = [[0] * 3 for i in range(5)]
+为5行3列全是0的数组。
+
+
+############################
+做过：
+1，
+
+2: 不区分大小写比较： 全部转为小/大写再比较。 str1.lower() == str2.lower()
+
+3: Python将list中的string转换为int:
+results = ['1', '2', '3']
+list(map(int, results))
+
+5:
+某某制到十进制(比如16进制)：int('0xf',16) 
+十进制到二进制：bin(a)
+十进制到八进制：oct(a)
+十进制到十六进制：hex(a)
+
+8:
+字典添加： dic['keys'] = dic['values']。
+split 是用于 string的。
+查list里面有无某元素：list.count("XX")==0
+
+
+
+
+
+自己没做出来的：
+HJ6（while和for互换位置，节约时间后即通过）
+HJ9 set乱序后， 用list2.sort(key=list.index)可按照原顺序排列
+HJ16 [i for i,x in enumerate(affiliation) if x=='0']
+
+
+
+需要回看的
+HJ16 背包问题 动态规划  难，不会做
+HJ18 字符串问题，繁琐，但是似乎能做出来
+HJ19 不难应该
+HJ20 不难，活用ord()函数，以及想到最后的循环
+HJ24 最长子序列问题 动态规划 有点难 最长递增子序列问题（longest increasing subsequence） 这个可以有时间手做一遍
+HJ25 题难懂 实际简单
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

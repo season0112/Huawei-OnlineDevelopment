@@ -1,0 +1,20 @@
+import enum
+import sys
+
+'''
+for line in sys.stdin:
+    a = line.split()
+    print(int(a[0]) + int(a[1]))
+'''
+
+arr1 = input()
+arr2 = input()
+
+count = 0
+
+for i in range(len(arr1)):
+    if arr1[i].lower() == arr2.lower():
+        count = count + 1
+
+print(count)
+

@@ -1,0 +1,44 @@
+
+
+number = int(input())
+
+dic = {}
+
+for i in range(number):
+
+    tem2 = input()
+    tem = str(tem2).split(' ')
+
+    #print(string(tem).split(' '))
+    #print(tem)
+    #print(tem[0])
+
+    if list(dic.keys()).count(tem[0]) == 0:
+        dic[str(tem[0])] = str(tem[1])
+    else:
+        dic[str(tem[0])] = int(dic[str(tem[0])]) + int(str(tem[1])) 
+
+
+#print(dic)
+#dic = sorted(dic)
+
+#for keys,values in dic.items():
+#    print(keys, values)
+
+keys_order = sorted( list( map(int, list(dic.keys())) ) )
+
+for i in keys_order:
+
+    #print( str(i) )
+    #print(dic)
+    #print( dic[str(i)] )
+
+
+    print( str(i) + str(" ") + str(dic[str(i)]) )
+
+
+
+
+
+
+

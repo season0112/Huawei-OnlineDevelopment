@@ -1,0 +1,73 @@
+
+# Read Input data
+line1 = str(input()).split(" ")
+
+TotalMoney        = int(line1[0])
+TotalObjectNumber = int(line1[1])
+
+price       = []
+weight      = []
+affiliation = [] 
+
+for i in range(TotalObjectNumber):
+    temp = str(input()).split(" ")
+    price.append(int(temp[0]))
+    weight.append(int(temp[1]))
+    affiliation.append(int(temp[2]))
+
+MajorObjectNumber = affiliation.count(0)
+MajorObjectIndex = [i for i,x in enumerate(affiliation) if x==0]
+
+'''
+print(price)
+print(weight)
+print(affiliation)
+print(MajorObjectIndex)
+print(MajorObjectIndex[0])
+print("MajorObjectNumber:" + str(MajorObjectNumber))
+print("TotalMoney:" + str(TotalMoney))
+'''
+
+
+# dp part
+
+# initial shape of dp
+#dp = [[0] * TotalMoney+1 for i in range()]
+dp = [[0]*(TotalMoney+1) for _ in range(MajorObjectNumber)]
+
+
+# initial value of dp
+for i in range(MajorObjectNumber):
+    dp[i][0] = 0
+for j in range(TotalMoney+1):
+    #print('j = ' + str(j))
+    #print("check:" + str(dp[0][j]))
+    if price[MajorObjectIndex[0]] > TotalMoney:
+        dp[0][j] = 0
+    else:
+        #print("MajorObjectIndex[0]=" + str(MajorObjectIndex[0]))
+        #print(weight[0])
+        #print(price[0])
+        dp[0][j] = weight[MajorObjectIndex[0]] * price[MajorObjectIndex[0]]
+
+
+# 2d loop 
+for i in range(MajorObjectNumber):
+    for j in range(TotalMoney+1):
+        maxtemp = max( dp[i-1][j], dp[i-1][j-price(MajorObjectIndex[i])] + weight[i]*price[i] )
+        for k in range(i主件对应的附件数目):
+            maxtemp = max(maxtemp, dp[i-1][j-price(MajorObjectIndex[i])-附件k的价格] + weight[i]*price[i]+附件k的满意度 )
+        dp[i][j] = maxtemp
+
+
+print(dp[MajorObjectNumber][TotalMoney+1])
+
+
+
+
+
+
+
+
+
+

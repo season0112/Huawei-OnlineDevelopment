@@ -1,0 +1,14 @@
+
+hexarr = input()
+
+#print(hexarr)
+
+print(int(hexarr,16))
+
+
+
+
+
+
+
+

@@ -1,0 +1,12 @@
+number = int(input())
+
+arr = []
+
+for i in range(number):
+    arr.append(str(input()))
+
+arr2 = sorted(arr)
+
+
+for i,x in enumerate(arr2):
+    print(x)

@@ -1,0 +1,8 @@
+number = bin(int(input()))
+
+print(list(number).count('1'))
+
+
+
+
+

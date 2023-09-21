@@ -1,0 +1,19 @@
+import sys
+
+arr = input()
+
+
+#print(arr)
+
+arr2 = arr.split()[-1]
+
+
+print(len(arr2))
+
+
+'''
+for line in sys.stdin:
+    a = line.split()
+    print(int(a[0]) + int(a[1]))
+'''    
+

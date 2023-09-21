@@ -1,0 +1,11 @@
+
+inputsentence = str(input())
+
+reversesentence = inputsentence.split(" ")
+reversesentence.reverse()
+
+print(" ".join(reversesentence))
+
+
+
+
