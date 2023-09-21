@@ -1,5 +1,6 @@
 # Huawei-OnlineDevelopment
 Here are the tracking of my solutions of Huawei OnlineDevelopment(OD) Test.
+Problems are collected from: newcoder website (https://www.nowcoder.com/exam/oj/ta?tpId=37).
 
 The Huawei OD test consists of 600 points, with 3 problems of 100,200,300 points respectively. 
 The main area of Huawei OD test includes: 
